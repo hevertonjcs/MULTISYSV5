@@ -10,6 +10,12 @@
 	</head>
 	<body>
 		<div id="root"></div>
-		<script type="module" src="/src/main.jsx"></script>
+    <!--
+      Use a relative import to load the Vite entry module.  Absolute paths
+      (starting with a leading slash) break when running the build outside of
+      the Vite dev server, as seen during the Vercel build.  A relative path
+      ensures Rollup can resolve the entry point correctly.
+    -->
+    <script type="module" src="./src/main.jsx"></script>
 	</body>
 </html>
