@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 5% 96%; /* #F2F2F5 - Light Gray */
+    --foreground: 240 6% 10%; /* #17171A - Almost Black */
+
+    --card: 0 0% 100%; /* #FFFFFF - White */
+    --card-foreground: 240 6% 10%; /* #17171A */
+
+    --popover: 0 0% 100%; /* #FFFFFF */
+    --popover-foreground: 240 6% 10%;
+
+    --primary: 163 100% 39%; /* #00C696 - Vibrant Green */
+    --primary-foreground: 0 0% 100%; /* White */
+    
+    --secondary: 240 5% 90%; /* #E3E3E8 - Lighter Gray */
+    --secondary-foreground: 240 6% 10%;
+
+    --muted: 240 5% 90%; /* #E3E3E8 */
+    --muted-foreground: 240 4% 46%; /* #707078 - Gray for text */
+
+    --accent: 240 5% 90%; /* #E3E3E8 */
+    --accent-foreground: 240 6% 10%;
+
+    --destructive: 0 84% 60%; /* #F87171 - Red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%; /* #E0E0E6 */
+    --input: 240 6% 93%; /* #E9E9ED */
+    --ring: 163 100% 39%; /* #00C696 */
+
+    --radius: 0.5rem; 
+  }
+
+  .dark {
+    --background: 240 6% 10%; /* #17171A */
+    --foreground: 0 0% 98%; /* #FAFAFA */
+
+    --card: 240 4% 12%; /* #1C1C1F */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 6% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 163 100% 42%; /* #00D9A3 - Brighter Green */
+    --primary-foreground: 240 6% 10%;
+    
+    --secondary: 240 4% 16%; /* #262629 */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%; /* #A1A1AA */
+
+    --accent: 240 4% 16%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 72% 51%; /* #EF4444 */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 163 100% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif; 
+  }
+}
+
+@layer components {
+  .form-step { 
+    @apply bg-card rounded-xl p-6 shadow-xl; 
+  }
+}
+
+::placeholder {
+  @apply text-muted-foreground/70;
+}
