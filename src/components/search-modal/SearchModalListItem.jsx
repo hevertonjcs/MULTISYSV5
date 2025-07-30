@@ -167,26 +167,15 @@ const SearchModalListItem = ({
     }
   }, [item.documentos]);
 
-const getWhatsAppLinkWithText = () => {
-  if (!item.telefone) return '#';
-
-  const cleaned = item.telefone.replace(/\D/g, '');
-
-  // Aplica mesmo padrão de validação da função base
-  let formattedNumber = cleaned;
-  if (cleaned.length === 11 || cleaned.length === 10) {
-    formattedNumber = `55${cleaned}`;
-  }
-
-  const nomeCliente = encodeURIComponent(item.nome_completo);
-  const vendedor = encodeURIComponent(item.vendedor);
-  const data = encodeURIComponent(formatDate(item.data_cadastro));
-  const status = encodeURIComponent(item.status_cliente || 'Em análise');
-
-  const msg = `Olá ${nomeCliente}, aqui é da equipe Multinegociações. Estamos entrando em contato referente ao seu cadastro feito com o vendedor ${vendedor} no dia ${data}. Ele está com o status: ${status}. Gostaria de saber se possui dúvidas ou como podemos te ajudar a dar andamento!`;
-
-  return `https://api.whatsapp.com/send?phone=${formattedNumber}&text=${msg}`;
-};
+  const getWhatsAppLink = (phoneNumber) => {
+    if (!phoneNumber) return '#';
+    const cleaned = phoneNumber.replace(/\D/g, ''); // Remove non-numeric characters
+    // Assuming Brazilian numbers, add 55 if not present and it's a valid length
+    if (cleaned.length === 11 || cleaned.length === 10) { // 11 for 9xxxx-xxxx, 10 for xxxx-xxxx (old format or landline)
+      return `https://api.whatsapp.com/send?phone=55${cleaned}`;
+    }
+    return `https://api.whatsapp.com/send?phone=${cleaned}`; // Fallback for other formats
+  };
 
   return (
     <div className={cn("border-b border-border/30 rounded-lg overflow-hidden transition-all duration-300", statusInfo.className.replace(/text-\w+-\d+/g, ''))}>
